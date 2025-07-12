@@ -1,0 +1,71 @@
+# Configuración para GitHub Pages (Jekyll)
+title: "Pinturas Bambi"
+description: "Desde 1981 le damos color al país - Líder en fabricación de pinturas, solventes y adhesivos en Paraguay"
+baseurl: ""
+url: "https://pinturasbambi.github.io"
+
+# SEO
+lang: es
+locale: es_PY
+
+# Configuración básica
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# Exclude
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - .git
+  - .github
+
+# Configuración de compilación
+safe: true
+incremental: false
+profile: false
+
+# Configuración de servidor
+host: localhost
+port: 4000
+show_dir_listing: false
+
+# Configuración de tiempo
+timezone: America/Asuncion
+future: false
+unpublished: false
+
+# Configuración de archivos
+keep_files: [".git", ".svn"]
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+# Configuración de Liquid
+strict_front_matter: false
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
+
+# Configuración de kramdown
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  footnote_backlink: "&#x21a9;&#xfe0e;"
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
