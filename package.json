@@ -1,0 +1,54 @@
+{
+  "name": "pinturas-bambi-website",
+  "version": "1.0.0",
+  "description": "Sitio web oficial de Pinturas Bambi - Desde 1981 le damos color al país",
+  "main": "01-SITIO-WEB-FINAL/index.html",
+  "scripts": {
+    "start": "npx http-server 01-SITIO-WEB-FINAL -p 8080",
+    "build": "npm run minify",
+    "minify": "html-minifier --collapse-whitespace --remove-comments --minify-css --minify-js 01-SITIO-WEB-FINAL/index.html -o 01-SITIO-WEB-FINAL/index.min.html",
+    "test": "npm run lighthouse",
+    "lighthouse": "lighthouse http://localhost:8080 --output=json --output-path=./lighthouse-report.json",
+    "deploy": "gh-pages -d 01-SITIO-WEB-FINAL"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/pinturas-bambi.git"
+  },
+  "keywords": [
+    "pinturas",
+    "bambi",
+    "paraguay",
+    "website",
+    "html",
+    "css",
+    "javascript",
+    "responsive",
+    "pwa",
+    "seo",
+    "performance"
+  ],
+  "author": "UAB Developer <1707505@uab.cat>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/username/pinturas-bambi/issues"
+  },
+  "homepage": "https://pinturasbambi.com.py",
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "clean-css-cli": "^5.6.2",
+    "uglify-js": "^3.17.4",
+    "lighthouse": "^10.4.0",
+    "gh-pages": "^5.0.0",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

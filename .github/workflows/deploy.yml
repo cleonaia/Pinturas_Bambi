@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js 🔧
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies 📦
+      run: npm install -g html-minifier clean-css-cli uglify-js
+      
+    - name: Optimize HTML 🔄
+      run: |
+        html-minifier --collapse-whitespace --remove-comments --minify-css --minify-js 01-SITIO-WEB-FINAL/index.html -o 01-SITIO-WEB-FINAL/index.min.html
+        mv 01-SITIO-WEB-FINAL/index.min.html 01-SITIO-WEB-FINAL/index.html
+        
+    - name: Run Lighthouse CI 🔍
+      uses: treosh/lighthouse-ci-action@v9
+      with:
+        configPath: '.github/lighthouse/lighthouserc.json'
+        uploadArtifacts: true
+        
+    - name: Deploy to GitHub Pages 🚀
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./01-SITIO-WEB-FINAL
+        cname: pinturasbambi.com.py
