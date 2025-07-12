@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinturas Bambi - App Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .phone-container {
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 30px;
+            padding: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .status-bar {
+            height: 44px;
+            background: #003366;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #000;
+            border-radius: 0 0 15px 15px;
+            z-index: 10;
+        }
+
+        .app-header {
+            height: 60px;
+            background: linear-gradient(135deg, #003366 0%, #0066CC 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .tab-bar {
+            height: 80px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .tab-item.active {
+            background: rgba(0, 51, 102, 0.1);
+            color: #003366;
+        }
+
+        .tab-item:not(.active) {
+            color: #666;
+        }
+
+        .tab-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .tab-text {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .screen {
+            display: none;
+            height: calc(100% - 60px - 80px);
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #003366 0%, #0066CC 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin: -20px -20px 20px -20px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hero-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+
+        .feature-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 120px;
+            background: linear-gradient(45deg, #e0e0e0, #f5f5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0066CC;
+        }
+
+        .calculator-form {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0066CC;
+        }
+
+        .calc-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #003366 0%, #0066CC 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .calc-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .calc-result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #0066CC;
+        }
+
+        .profile-section {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #003366 0%, #0066CC 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            margin: 0 auto 15px;
+        }
+
+        .profile-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+
+        .profile-email {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+            margin-right: 15px;
+            color: #0066CC;
+        }
+
+        .menu-text {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .menu-arrow {
+            margin-left: auto;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .phone-container {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                padding: 0;
+            }
+
+            .phone-screen {
+                border-radius: 0;
+            }
+
+            .notch {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <div class="notch"></div>
+            
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>Pinturas Bambi</span>
+                <span>100%</span>
+            </div>
+
+            <div class="app-header">
+                <span id="headerTitle">🎨 Pinturas Bambi</span>
+            </div>
+
+            <!-- Home Screen -->
+            <div class="screen active" id="homeScreen">
+                <div class="hero-section">
+                    <div class="hero-title">¡Bienvenido a Pinturas Bambi!</div>
+                    <div class="hero-subtitle">Tu socio en color y calidad</div>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-title">Catálogo</div>
+                        <div class="feature-desc">Explora nuestros productos</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧮</div>
+                        <div class="feature-title">Calculadora</div>
+                        <div class="feature-desc">Calcula pintura necesaria</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📍</div>
+                        <div class="feature-title">Tiendas</div>
+                        <div class="feature-desc">Encuentra la más cercana</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <div class="feature-title">WhatsApp</div>
+                        <div class="feature-desc">Contacto directo</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Screen -->
+            <div class="screen" id="productsScreen">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">🎨</div>
+                        <div class="product-info">
+                            <div class="product-name">Pintura Exterior</div>
+                            <div class="product-price">$45.000</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🏠</div>
+                        <div class="product-info">
+                            <div class="product-name">Pintura Interior</div>
+                            <div class="product-price">$38.000</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">✨</div>
+                        <div class="product-info">
+                            <div class="product-name">Esmalte Premium</div>
+                            <div class="product-price">$52.000</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🛡️</div>
+                        <div class="product-info">
+                            <div class="product-name">Impermeabilizante</div>
+                            <div class="product-price">$65.000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculator Screen -->
+            <div class="screen" id="calculatorScreen">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label class="form-label">Área a pintar (m²)</label>
+                        <input type="number" class="form-input" id="area" placeholder="Ejemplo: 100">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Número de manos</label>
+                        <input type="number" class="form-input" id="coats" placeholder="Ejemplo: 2" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tipo de superficie</label>
+                        <select class="form-input" id="surface">
+                            <option value="lisa">Superficie lisa</option>
+                            <option value="rugosa">Superficie rugosa</option>
+                            <option value="texturada">Superficie texturada</option>
+                        </select>
+                    </div>
+                    <button class="calc-button" onclick="calculatePaint()">Calcular Pintura</button>
+                    <div class="calc-result" id="result" style="display: none;">
+                        <h3>Resultado:</h3>
+                        <p id="resultText"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Screen -->
+            <div class="screen" id="profileScreen">
+                <div class="profile-section">
+                    <div class="profile-header">
+                        <div class="profile-avatar">👤</div>
+                        <div class="profile-name">Usuario Demo</div>
+                        <div class="profile-email">demo@pinturasbambi.com</div>
+                    </div>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="menu-item">
+                        <div class="menu-icon">📋</div>
+                        <div class="menu-text">Mis Pedidos</div>
+                        <div class="menu-arrow">›</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon">❤️</div>
+                        <div class="menu-text">Favoritos</div>
+                        <div class="menu-arrow">›</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon">🎯</div>
+                        <div class="menu-text">Mis Proyectos</div>
+                        <div class="menu-arrow">›</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon">⚙️</div>
+                        <div class="menu-text">Configuración</div>
+                        <div class="menu-arrow">›</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon">📞</div>
+                        <div class="menu-text">Contacto</div>
+                        <div class="menu-arrow">›</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Bar -->
+            <div class="tab-bar">
+                <div class="tab-item active" onclick="switchTab('home')">
+                    <div class="tab-icon">🏠</div>
+                    <div class="tab-text">Inicio</div>
+                </div>
+                <div class="tab-item" onclick="switchTab('products')">
+                    <div class="tab-icon">🎨</div>
+                    <div class="tab-text">Productos</div>
+                </div>
+                <div class="tab-item" onclick="switchTab('calculator')">
+                    <div class="tab-icon">🧮</div>
+                    <div class="tab-text">Calculadora</div>
+                </div>
+                <div class="tab-item" onclick="switchTab('profile')">
+                    <div class="tab-icon">👤</div>
+                    <div class="tab-text">Perfil</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-item').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            event.target.closest('.tab-item').classList.add('active');
+            
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show selected screen
+            document.getElementById(tabName + 'Screen').classList.add('active');
+            
+            // Update header title
+            const titles = {
+                'home': '🎨 Pinturas Bambi',
+                'products': '🎨 Productos',
+                'calculator': '🧮 Calculadora',
+                'profile': '👤 Mi Perfil'
+            };
+            document.getElementById('headerTitle').textContent = titles[tabName];
+        }
+
+        function calculatePaint() {
+            const area = parseFloat(document.getElementById('area').value);
+            const coats = parseInt(document.getElementById('coats').value);
+            const surface = document.getElementById('surface').value;
+            
+            if (!area || !coats) {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+            
+            // Rendimiento según tipo de superficie (m²/litro)
+            const coverage = {
+                'lisa': 12,
+                'rugosa': 8,
+                'texturada': 6
+            };
+            
+            const litersNeeded = (area * coats) / coverage[surface];
+            const gallons = Math.ceil(litersNeeded / 3.785); // Convertir a galones
+            const estimatedCost = gallons * 45000; // Precio promedio por galón
+            
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('resultText').innerHTML = `
+                <strong>Litros necesarios:</strong> ${litersNeeded.toFixed(1)} L<br>
+                <strong>Galones necesarios:</strong> ${gallons} galones<br>
+                <strong>Costo estimado:</strong> ₲${estimatedCost.toLocaleString()}
+            `;
+        }
+
+        // Simular carga de datos
+        window.addEventListener('load', () => {
+            console.log('📱 Pinturas Bambi App - Preview Mode');
+            console.log('✅ App cargada correctamente');
+        });
+    </script>
+</body>
+</html>
