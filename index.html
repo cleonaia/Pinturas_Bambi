@@ -6,46 +6,86 @@
     <title>Pinturas Bambi - Desde 1981 le damos color al país</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .container {
+            text-align: center;
             max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.1);
             padding: 40px;
+            background: rgba(255,255,255,0.1);
             border-radius: 20px;
             backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
         h1 {
-            font-size: 3em;
+            font-size: 4em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         .subtitle {
-            font-size: 1.5em;
-            margin-bottom: 40px;
+            font-size: 1.8em;
+            margin-bottom: 30px;
             opacity: 0.9;
         }
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
         .btn {
-            background: #ff6b6b;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
             color: white;
             padding: 15px 30px;
             border: none;
             border-radius: 25px;
-            font-size: 1.2em;
+            font-size: 1.1em;
+            font-weight: bold;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             margin: 10px;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        .emoji {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -53,10 +93,45 @@
     <div class="container">
         <h1>🎨 Pinturas Bambi</h1>
         <p class="subtitle">Desde 1981 le damos color al país</p>
-        <p>Sitio web oficial con aplicaciones móviles y documentación completa</p>
-        <a href="01-SITIO-WEB-FINAL/index.html" class="btn">Ver Sitio Web</a>
-        <a href="02-APPS-MOVILES/" class="btn">Apps Móviles</a>
-        <a href="03-DOCUMENTACION/" class="btn">Documentación</a>
+        <p class="description">
+            Proyecto completo con sitio web, aplicaciones móviles y documentación técnica profesional.
+            Desarrollado con las mejores prácticas de desarrollo web y mobile.
+        </p>
+        
+        <div>
+            <a href="01-SITIO-WEB-FINAL/index.html" class="btn">🌐 Sitio Web</a>
+            <a href="02-APPS-MOVILES/" class="btn">📱 Apps Móviles</a>
+            <a href="03-DOCUMENTACION/" class="btn">📚 Documentación</a>
+            <a href="04-HERRAMIENTAS/" class="btn">🔧 Herramientas</a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="emoji">🚀</div>
+                <h3>Sitio Web Moderno</h3>
+                <p>Diseño responsivo y optimizado</p>
+            </div>
+            <div class="feature">
+                <div class="emoji">📱</div>
+                <h3>Apps Móviles</h3>
+                <p>React Native e iOS nativo</p>
+            </div>
+            <div class="feature">
+                <div class="emoji">📋</div>
+                <h3>Documentación</h3>
+                <p>Guías completas y manuales</p>
+            </div>
+            <div class="feature">
+                <div class="emoji">🏆</div>
+                <h3>GitHub Achievements</h3>
+                <p>Configurado para máximos logros</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Pinturas Bambi - Proyecto desarrollado por cleonaia</p>
+            <p>🌟 Configurado con GitHub Pages, Actions, y todas las insignias posibles</p>
+        </div>
     </div>
 </body>
 </html>
