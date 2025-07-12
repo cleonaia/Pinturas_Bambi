@@ -65,6 +65,11 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -81,6 +86,138 @@
             font-size: 2em;
             margin-bottom: 10px;
         }
+        
+        /* Estilos del formulario de contacto */
+        .contact-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .contact-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .contact-subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .contact-form {
+            display: grid;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1em;
+            font-family: 'Arial', sans-serif;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #feca57;
+            box-shadow: 0 0 15px rgba(254, 202, 87, 0.3);
+            transform: translateY(-2px);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .success-message {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            .contact-title {
+                font-size: 2em;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .contact-form {
+                max-width: 100%;
+            }
+        }
+        
         .footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -128,15 +265,169 @@
             </div>
         </div>
 
+        <!-- Formulario de Contacto -->
+        <div class="contact-section">
+            <h2 class="contact-title">📞 Contáctanos</h2>
+            <p class="contact-subtitle">¿Tienes alguna pregunta? ¡Nos encantaría escucharte!</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Nombre *</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                        <div class="error-message" id="nameError">Por favor ingresa tu nombre</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        <div class="error-message" id="emailError">Por favor ingresa un email válido</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Teléfono (opcional)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensaje *</label>
+                    <textarea id="message" name="message" placeholder="Cuéntanos sobre tu proyecto o consulta..." required></textarea>
+                    <div class="error-message" id="messageError">Por favor ingresa tu mensaje</div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" class="btn" id="submitBtn">
+                        <span id="submitText">📤 Enviar Mensaje</span>
+                        <span id="loadingText" style="display: none;">
+                            <span class="loading"></span>Enviando...
+                        </span>
+                    </button>
+                </div>
+            </form>
+            
+            <div class="success-message" id="successMessage">
+                <h3>✅ ¡Mensaje enviado con éxito!</h3>
+                <p>Gracias por contactarnos. Te responderemos pronto.</p>
+            </div>
+        </div>
+
         <div class="footer">
             <p>© 2025 Pinturas Bambi - Proyecto desarrollado por cleonaia</p>
             <p>🌟 Configurado con GitHub Pages, Actions, y todas las insignias posibles</p>
         </div>
         
-        <!-- TODO: Add contact form here (Issue #4) -->
         <!-- TODO: Add search functionality (Issue #5) -->
         <!-- TODO: Improve mobile responsiveness (Issue #6) -->
 
     </div>
+
+    <script>
+        // Funcionalidad del formulario de contacto
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const loadingText = document.getElementById('loadingText');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Función para validar email
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Función para mostrar error
+            function showError(fieldId, errorId, message) {
+                document.getElementById(fieldId).style.borderColor = '#ff6b6b';
+                const errorElement = document.getElementById(errorId);
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+            
+            // Función para limpiar error
+            function clearError(fieldId, errorId) {
+                document.getElementById(fieldId).style.borderColor = 'rgba(255,255,255,0.3)';
+                document.getElementById(errorId).style.display = 'none';
+            }
+            
+            // Validación en tiempo real
+            document.getElementById('name').addEventListener('input', function() {
+                if (this.value.trim()) {
+                    clearError('name', 'nameError');
+                }
+            });
+            
+            document.getElementById('email').addEventListener('input', function() {
+                if (this.value.trim() && isValidEmail(this.value)) {
+                    clearError('email', 'emailError');
+                }
+            });
+            
+            document.getElementById('message').addEventListener('input', function() {
+                if (this.value.trim()) {
+                    clearError('message', 'messageError');
+                }
+            });
+            
+            // Manejo del envío del formulario
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                
+                let isValid = true;
+                
+                // Validación de nombre
+                if (!name) {
+                    showError('name', 'nameError', 'Por favor ingresa tu nombre');
+                    isValid = false;
+                }
+                
+                // Validación de email
+                if (!email) {
+                    showError('email', 'emailError', 'Por favor ingresa tu email');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showError('email', 'emailError', 'Por favor ingresa un email válido');
+                    isValid = false;
+                }
+                
+                // Validación de mensaje
+                if (!message) {
+                    showError('message', 'messageError', 'Por favor ingresa tu mensaje');
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Mostrar estado de carga
+                    submitBtn.disabled = true;
+                    submitText.style.display = 'none';
+                    loadingText.style.display = 'inline';
+                    
+                    // Simular envío (en un caso real, aquí iría la lógica de envío)
+                    setTimeout(() => {
+                        // Ocultar formulario y mostrar mensaje de éxito
+                        form.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        
+                        // Resetear formulario
+                        form.reset();
+                        
+                        // Restaurar botón después de 3 segundos
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitText.style.display = 'inline';
+                            loadingText.style.display = 'none';
+                            form.style.display = 'block';
+                            successMessage.style.display = 'none';
+                        }, 3000);
+                    }, 2000);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
