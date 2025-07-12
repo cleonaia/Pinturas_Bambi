@@ -1,0 +1,16 @@
+# robots.txt para SEO
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://pinturasbambi.com.py/sitemap.xml
+
+# Disallow admin areas (si las hay)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Allow important files
+Allow: /sitemap.xml
+Allow: /robots.txt
