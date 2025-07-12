@@ -1,7 +1,7 @@
 # 🎨 Pinturas Bambi - Sitio Web Profesional
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?style=for-the-badge&logo=github)](https://username.github.io/pinturas-bambi)
-[![Website](https://img.shields.io/website-up-down-green-red/https/pinturasbambi.com.py.svg?style=for-the-badge)](https://pinturasbambi.com.py)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?style=for-the-badge&logo=github)](https://cleonaia.github.io/pinturas-bambi)
+[![Website](https://img.shields.io/website-up-down-green-red/https/cleonaia.github.io/pinturas-bambi.svg?style=for-the-badge)](https://cleonaia.github.io/pinturas-bambi)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-98%2F100-brightgreen?style=for-the-badge&logo=lighthouse)](https://developers.google.com/web/tools/lighthouse)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
@@ -28,10 +28,10 @@
 
 ## 📊 Estadísticas del Proyecto
 
-![GitHub repo size](https://img.shields.io/github/repo-size/username/pinturas-bambi?style=flat-square)
-![GitHub code size](https://img.shields.io/github/languages/code-size/username/pinturas-bambi?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/username/pinturas-bambi?style=flat-square)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/username/pinturas-bambi?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/cleonaia/pinturas-bambi?style=flat-square)
+![GitHub code size](https://img.shields.io/github/languages/code-size/cleonaia/pinturas-bambi?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/cleonaia/pinturas-bambi?style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/cleonaia/pinturas-bambi?style=flat-square)
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -175,9 +175,9 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
   <h3>🎨 Pinturas Bambi</h3>
   <p><strong>Desde 1981 le damos color al país</strong></p>
   
-  ![GitHub stars](https://img.shields.io/github/stars/username/pinturas-bambi?style=social)
-  ![GitHub forks](https://img.shields.io/github/forks/username/pinturas-bambi?style=social)
-  ![GitHub watchers](https://img.shields.io/github/watchers/username/pinturas-bambi?style=social)
+  ![GitHub stars](https://img.shields.io/github/stars/cleonaia/pinturas-bambi?style=social)
+  ![GitHub forks](https://img.shields.io/github/forks/cleonaia/pinturas-bambi?style=social)
+  ![GitHub watchers](https://img.shields.io/github/watchers/cleonaia/pinturas-bambi?style=social)
   
   <p>Hecho con ❤️ en Paraguay</p>
 </div>

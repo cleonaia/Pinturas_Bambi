@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/username/pinturas-bambi.git"
+    "url": "https://github.com/cleonaia/pinturas-bambi.git"
   },
   "keywords": [
     "pinturas",
@@ -28,12 +28,12 @@
     "seo",
     "performance"
   ],
-  "author": "UAB Developer <1707505@uab.cat>",
+  "author": "cleonaia <1707505@uab.cat>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/username/pinturas-bambi/issues"
+    "url": "https://github.com/cleonaia/pinturas-bambi/issues"
   },
-  "homepage": "https://pinturasbambi.com.py",
+  "homepage": "https://cleonaia.github.io/pinturas-bambi",
   "devDependencies": {
     "html-minifier": "^4.0.0",
     "clean-css-cli": "^5.6.2",
